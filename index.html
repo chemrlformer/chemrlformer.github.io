@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Searching for High-Value Molecules Using Reinforcement Learning and Transformers">
+  <meta name="keywords" content="MBRL, Latent-Space">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Searching for High-Value Molecules Using Reinforcement Learning and Transformers</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Searching for High-Value Molecules Using Reinforcement Learning and Transformers</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://rajghugare19.github.io/">Raj Ghughare</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/santiago-miret">Santiago Miret</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/adriana-hugessen-20a68062/">Adriana Hugessen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/mariano-phielipp-941624">Mariano Phielipp</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://neo-x.github.io/">Glen Berseth</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Montreal , Mila</span>
+            <span class="author-block"><sup>2</sup>Intel Labs</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2310.02902"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="to-do"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/ant.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/humanoid.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/walker.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reinforcement learning (RL) over text representations can be effective for finding high-value policies that can search over graphs. 
+            However, RL requires careful structuring of the search space and algorithm design to be effective in this challenge. 
+            Through extensive experiments, we explore how different design choices for text grammar and algorithmic choices for training can affect an RL policy's ability to generate molecules with desired properties. 
+            We arrive at a new RL-based molecular design algorithm (ChemRLFormer) and perform a thorough analysis using 25 molecule design tasks, including computationally complex protein docking simulations. 
+            From this analysis, we discover unique insights in this problem space and show that ChemRLFormer achieves state-of-the-art performance while being more straightforward than prior work by demystifying which design choices are actually helpful for text-based molecule design.
+        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+  
+  
+  <section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+
+      <div class="column is-four-fifths">
+
+           <img src="./static/images/demo.png" alt="Overview of how an RL agent can generate molecules" style="width:100%;">
+
+      </div>
+     </div>
+    </div> 
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+      <p>Molecules generated by ChemRLFormer by reward hacking the docking functions.</p></div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+             <img src="./static/images/hacked.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+        </div>
+       </div>
+      </div> 
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+      <p>High value molecules generated by ChemRLFormer for various reward functions.</p>
+    </div>
+  </div> 
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+        
+        <p>albuterol similarity</p></div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+               <img src="./static/images/albuterol similarity.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+          </div>
+         </div>
+        </div> 
+      </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+          
+          <p>amlodipine mpo</p></div>
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+                 <img src="./static/images/amlodipine mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+            </div>
+           </div>
+          </div> 
+        </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+          
+          <p>celecoxib rediscovery</p></div>
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+                  <img src="./static/images/celecoxib rediscovery.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+            </div>
+            </div>
+          </div> 
+        </section>
+      
+        <section class="section">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+            
+            <p>deco hop</p></div>
+            <div class="columns is-centered">
+              <div class="column is-four-fifths">
+                    <img src="./static/images/deco hop.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+              </div>
+              </div>
+            </div> 
+          </section>
+        
+          <section class="section">
+            <div class="container is-max-desktop">
+              <div class="columns is-centered has-text-centered">
+              
+              <p>drd2</p></div>
+              <div class="columns is-centered">
+                <div class="column is-four-fifths">
+                      <img src="./static/images/drd2.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                </div>
+                </div>
+              </div> 
+            </section>
+          
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>fexofenadine mpo</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/fexofenadine mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+  
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>gsk3b</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/gsk3b.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+            
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>isomers c7h8n2o2</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/isomers c7h8n2o2.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+            
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>isomers c9h10n2o2pf2cl</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/isomers c9h10n2o2pf2cl.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+          
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>jnk3</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/jnk3.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>median1</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/median1.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>median2</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/median2.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>mestranol similarity</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/mestranol similarity.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+
+            <section class="section">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                
+                <p>osimertinib mpo</p></div>
+                <div class="columns is-centered">
+                  <div class="column is-four-fifths">
+                        <img src="./static/images/osimertinib mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                  </div>
+                  </div>
+                </div> 
+              </section>
+
+              <section class="section">
+                <div class="container is-max-desktop">
+                  <div class="columns is-centered has-text-centered">
+                  
+                  <p>perindopril mpo</p></div>
+                  <div class="columns is-centered">
+                    <div class="column is-four-fifths">
+                          <img src="./static/images/perindopril mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                    </div>
+                    </div>
+                  </div> 
+                </section>
+
+                <section class="section">
+                  <div class="container is-max-desktop">
+                    <div class="columns is-centered has-text-centered">
+                    
+                    <p>qed</p></div>
+                    <div class="columns is-centered">
+                      <div class="column is-four-fifths">
+                            <img src="./static/images/qed.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                      </div>
+                      </div>
+                    </div> 
+                  </section>
+              
+                  <section class="section">
+                    <div class="container is-max-desktop">
+                      <div class="columns is-centered has-text-centered">
+                      
+                      <p>ranolazine mpo</p></div>
+                      <div class="columns is-centered">
+                        <div class="column is-four-fifths">
+                              <img src="./static/images/ranolazine mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                        </div>
+                        </div>
+                      </div> 
+                    </section>
+
+                    <section class="section">
+                      <div class="container is-max-desktop">
+                        <div class="columns is-centered has-text-centered">
+                        
+                        <p>scaffold hop</p></div>
+                        <div class="columns is-centered">
+                          <div class="column is-four-fifths">
+                                <img src="./static/images/scaffold hop.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                          </div>
+                          </div>
+                        </div> 
+                      </section>
+
+                    <section class="section">
+                      <div class="container is-max-desktop">
+                        <div class="columns is-centered has-text-centered">
+                        
+                        <p>sitagliptin mpo</p></div>
+                        <div class="columns is-centered">
+                          <div class="column is-four-fifths">
+                                <img src="./static/images/sitagliptin mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                          </div>
+                          </div>
+                        </div> 
+                      </section>
+
+                    <section class="section">
+                      <div class="container is-max-desktop">
+                        <div class="columns is-centered has-text-centered">
+                        
+                        <p>thiothixene rediscovery</p></div>
+                        <div class="columns is-centered">
+                          <div class="column is-four-fifths">
+                                <img src="./static/images/thiothixene rediscovery.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                          </div>
+                          </div>
+                        </div> 
+                      </section>
+                  
+                    <section class="section">
+                      <div class="container is-max-desktop">
+                        <div class="columns is-centered has-text-centered">
+                        
+                        <p>troglitazone rediscovery</p></div>
+                        <div class="columns is-centered">
+                          <div class="column is-four-fifths">
+                                <img src="./static/images/troglitazone rediscovery.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                          </div>
+                          </div>
+                        </div> 
+                      </section>
+                    
+                  <section class="section">
+                    <div class="container is-max-desktop">
+                      <div class="columns is-centered has-text-centered">
+                      
+                      <p>valsartan smarts</p></div>
+                      <div class="columns is-centered">
+                        <div class="column is-four-fifths">
+                              <img src="./static/images/valsartan smarts.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                        </div>
+                        </div>
+                      </div> 
+                    </section>
+              
+                    <section class="section">
+                      <div class="container is-max-desktop">
+                        <div class="columns is-centered has-text-centered">
+                        
+                        <p>zaleplon mpo</p></div>
+                        <div class="columns is-centered">
+                          <div class="column is-four-fifths">
+                                <img src="./static/images/zaleplon mpo.png" alt="Molecules generated by ChemRLFormer by reward hacking the docking functions" style="width:100%;">
+                          </div>
+                          </div>
+                        </div> 
+                      </section>
+</body>
+</html>
